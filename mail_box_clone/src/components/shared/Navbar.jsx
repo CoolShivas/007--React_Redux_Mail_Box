@@ -1,3 +1,6 @@
+import { PiDotsNineBold } from "react-icons/pi";
+import { CiSettings } from "react-icons/ci";
+import { CiCircleQuestion } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -14,7 +17,7 @@ const Navbar = () => {
             </div>
             {/* Ending of Logo and Heading with Humburger */}
 
-            {/* Starting of Search Bar with Logo */}
+            {/* Starting of Search Bar with Logo and added responsiveness according to mobile*/}
             <div className="md:block hidden w-[50%] mr-60">
                 <div className="flex items-center bg-[#EAF1FB] px-2 py-3 rounded-full">
                     <IoIosSearch size={"24px"} className="text-gray-700" />
@@ -23,7 +26,25 @@ const Navbar = () => {
                         className="rounded-full w-full bg-transparent outline-none px-1" />
                 </div>
             </div>
-            {/* Ending of Search Bar with Logo */}
+            {/* Ending of Search Bar with Logo and added responsiveness according to mobile*/}
+
+            {/* Starting of Question, Setting and Triple Dots Logo */}
+            <div className="md:block hidden">
+                <div className="flex items-center gap-2">
+                    <div className="p-3 rounded-full hover:bg-gray-100 cursor-pointer">
+                        <CiCircleQuestion size={"20px"} />
+                    </div>
+
+                    <div className="p-3 rounded-full hover:bg-gray-100 cursor-pointer">
+                        <CiSettings size={"20px"} />
+                    </div>
+
+                    <div className="p-3 rounded-full hover:bg-gray-100 cursor-pointer">
+                        <PiDotsNineBold size={"20px"} />
+                    </div>
+                </div>
+            </div>
+            {/* Ending of Question, Setting and Triple Dots Logo */}
         </div>
     )
 }
