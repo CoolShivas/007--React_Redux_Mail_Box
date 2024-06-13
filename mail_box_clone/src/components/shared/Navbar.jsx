@@ -1,3 +1,4 @@
+import Avatar from 'react-avatar';
 import { PiDotsNineBold } from "react-icons/pi";
 import { CiSettings } from "react-icons/ci";
 import { CiCircleQuestion } from "react-icons/ci";
@@ -42,6 +43,11 @@ const Navbar = () => {
                     <div className="p-3 rounded-full hover:bg-gray-100 cursor-pointer">
                         <PiDotsNineBold size={"20px"} />
                     </div>
+                    {/* Starting of Avatar for image icon on header's navbar */}
+                    <div className="cursor-pointer">
+                        <Avatar src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" size={"40px"} round={true}></Avatar>
+                    </div>
+                    {/* Ending of Avatar for image icon on header's navbar */}
                 </div>
             </div>
             {/* Ending of Question, Setting and Triple Dots Logo */}
