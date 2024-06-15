@@ -9,6 +9,7 @@ const Mail = () => {
     return (
         <div className="flex-1 bg-white rounded-xl mx-5 bg-yellow-300">
             <div className="flex items-center justify-between px-4 bg-green-300">
+
                 <div className="flex items-center gap-2 text-gray-700 py-2 bg-blue-300">
                     {/* Starting of BODY Mid Section Right Side Icons (First-Row) */}
                     <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
@@ -49,6 +50,17 @@ const Mail = () => {
                 </div>
                 {/* Ending of BODY Mid Section Left Side Icons (First-Row) */}
 
+            </div>
+
+            <div className="h-[90vh] overflow-y-auto p-4">
+                {/* Starting of BODY Mid Section Right Side Icons (Second-Row) */}
+                <div className="flex items-center justify-between bg-white gap-1">
+                    <div className="flex items-center gap-2">
+                        <h1 className="text-xl font-medium"> Subject </h1>
+                        <span className="text-sm bg-gray-200 rounded-md px-2"> inbox </span>
+                    </div>
+                </div>
+                {/* Ending of BODY Mid Section Right Side Icons (Second-Row) */}
             </div>
         </div>
     )
