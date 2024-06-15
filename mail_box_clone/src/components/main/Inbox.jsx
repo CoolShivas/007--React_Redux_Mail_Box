@@ -1,3 +1,4 @@
+import Messages from "./msg/Messages";
 import { useState } from "react";
 import { GoTag } from "react-icons/go";
 import { IoMdMore } from "react-icons/io";
@@ -62,6 +63,10 @@ const Inbox = () => {
                 </div>
             </div>
             {/* Ending of BODY Mid Section Right Side Icons (Second-Row) */}
+
+            {/* Startin of BODY Mid Section (Third-Row) Message Matter */}
+            <Messages></Messages>
+            {/* Ending of BODY Mid Section (Third-Row) Message Matter */}
 
         </div>
     )
