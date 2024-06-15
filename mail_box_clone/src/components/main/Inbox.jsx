@@ -1,3 +1,4 @@
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Messages from "./msg/Messages";
 import { useState } from "react";
 import { GoTag } from "react-icons/go";
@@ -45,6 +46,14 @@ const Inbox = () => {
                     </div>
                 </div>
                 {/* Ending of BODY Mid Section Right Side Icons (First-Row) */}
+
+                {/* Starting of BODY Mid Section Left Side Icons (First-Row) */}
+                <div className="flex items-center gap-2">
+                    <p className="text-sm text-gray-500"> 1-50 of 1000 </p>
+                    <button className="hover:rounded-full hover:bg-gray-200"> <MdKeyboardArrowLeft size={"24px"} /> </button>
+                    <button className="hover:rounded-full hover:bg-gray-200"> <MdKeyboardArrowRight size={"24px"} /> </button>
+                </div>
+                {/* Starting of BODY Mid Section Left Side Icons (First-Row) */}
 
             </div>
 

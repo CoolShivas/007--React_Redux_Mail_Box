@@ -5,7 +5,7 @@ const Msg = () => {
     return (
         <>
             {/* Starting of BODY Mid Section (Third-Row) Message */}
-            <div className="flex items-start justify-between border-b border-gray-200 px-4 text-sm hover:cursor-pointer hover:shadow">
+            <div className="flex items-start justify-between border-b border-gray-200 px-4 py-3 text-sm hover:cursor-pointer hover:shadow">
 
                 {/* Starting of BODY Mid Section (Third-Row) Message Icons */}
                 <div className="flex items-center gap-3">
