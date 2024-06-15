@@ -1,10 +1,10 @@
 import React from 'react';
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
-import Mail from "./components/Mail";
-import Body from "./components/Body";
-import Inbox from "./components/Inbox";
-import Navbar from "./components/shared/Navbar";
+import Mail from './components/main/Mail';
+import Body from "./components/main/Body";
+import Inbox from './components/main/Inbox';
+import Navbar from './components/header/Navbar';
 
 
 
