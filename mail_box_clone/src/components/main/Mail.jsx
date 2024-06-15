@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineAddTask, MdOutlineDriveFileMove } from "react-icons/md";
 import { MdOutlineMarkEmailUnread, MdOutlineWatchLater } from "react-icons/md";
@@ -6,13 +7,18 @@ import { MdDeleteOutline, MdOutlineReport } from "react-icons/md";
 import { IoMdMore, IoMdArrowBack } from "react-icons/io";
 
 const Mail = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className="flex-1 bg-white rounded-xl mx-5 bg-yellow-300">
             <div className="flex items-center justify-between px-4 bg-green-300">
 
                 <div className="flex items-center gap-2 text-gray-700 py-2 bg-blue-300">
                     {/* Starting of BODY Mid Section Right Side Icons (First-Row) */}
-                    <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
+                    <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer"
+                        onClick={() => { navigate("/") }}
+                    >
                         <IoMdArrowBack size={"20px"} />
                     </div>
                     <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
