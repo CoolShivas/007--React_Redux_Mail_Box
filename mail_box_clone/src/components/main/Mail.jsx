@@ -59,8 +59,26 @@ const Mail = () => {
                         <h1 className="text-xl font-medium"> Subject </h1>
                         <span className="text-sm bg-gray-200 rounded-md px-2"> inbox </span>
                     </div>
+                    {/* Starting of BODY Mid Section Left Side Icons (Second-Row) */}
+                    <div className="flex-none text-gray-400 my-5 text-sm">
+                        <p>12-08-2024</p>
+                    </div>
+                    {/* Ending of BODY Mid Section Left Side Icons (Second-Row) */}
                 </div>
                 {/* Ending of BODY Mid Section Right Side Icons (Second-Row) */}
+
+                {/* Starting of BODY Mid Section Right Side (Third-Row) */}
+                <div className="text-gray-500 text-sm">
+                    <h1> shiva@gmail.com </h1>
+                    <span> to me </span>
+                </div>
+                {/* Ending of BODY Mid Section Right Side (Third-Row) */}
+
+                {/* Starting of BODY Mid Section Right Side (Fourth-Row) */}
+                <div className="my-10">
+                    <p> message </p>
+                </div>
+                {/* Ending of BODY Mid Section Right Side (Fourth-Row) */}
             </div>
         </div>
     )
