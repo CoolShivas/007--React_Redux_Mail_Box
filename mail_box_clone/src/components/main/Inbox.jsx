@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GoTag } from "react-icons/go";
 import { IoMdMore } from "react-icons/io";
 import { MdCropSquare, MdInbox } from "react-icons/md";
@@ -22,6 +23,9 @@ const mailTypes = [
 
 
 const Inbox = () => {
+
+    const [mailTypeSelected, setMailTypeSelected] = useState(0);
+
     return (
         <div className="flex-1 rounded-xl mx-5 bg-white">
             <div className="flex items-center justify-between px-4">
@@ -48,7 +52,8 @@ const Inbox = () => {
                 <div className="flex items-center gap-1">
                     {mailTypes.map((brr, index) => {
                         return <button
-                            className="flex items-center gap-5 p-4 w-52 hover:bg-gray-100"
+                            className={`${mailTypeSelected === index ? "border-b-4 border-b-blue-600 text-blue-600" : "border-b-4 border-b-transparent"} flex items-center gap-5 p-4 w-52 hover:bg-gray-100`}
+                            onClick={() => setMailTypeSelected(index)}
                             key={index}>
                             {brr.icon}
                             <span> {brr.text} </span>
