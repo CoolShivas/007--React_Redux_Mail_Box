@@ -5,6 +5,7 @@ import { TbSend2 } from "react-icons/tb";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
 import { LuPencil } from "react-icons/lu";
+import { useState } from "react";
 
 
 
@@ -38,11 +39,22 @@ const sideBarItems = [
 
 
 const SideBar = () => {
+
+    const [openCompose, setOpenCompose] = useState(false);
+
+    // So, we in the SideBar and the Compose Btn is located here. But, the most important thing is that Compose Functional Component i.e, SendMail is an another file and to implement this local useState Hook either we have to make the SendMail Function here. Or we can pass the openCompose as props to that place. 
+
+    // What is local state variable ? 
+
+    //   This is a local state variable that can be used in this functional component or either can be accessible in another functional component with the help of props drill or by context api. But, the best way is the Redux store now a days. Where, we pass the openCompose and setOpenCompose state there and can be access any where in the program. So, install react-redux and @reduxjs/toolkit.
+
     return (
         <div className="w-[15%]">
             {/* Starting of Compose button with Icon */}
             <div className="p-3">
-                <button className="flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]">
+                <button className="flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]"
+                    onClick={() => { setOpenCompose(true) }}
+                >
                     <LuPencil size={"24px"} />
                     Compose
                 </button>
