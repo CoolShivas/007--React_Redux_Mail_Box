@@ -1,3 +1,4 @@
+import AuthForm from "./components/auth/AuthForm";
 import SendMail from "./components/pages/SendMail";
 import React from 'react';
 import { RouterProvider } from "react-router-dom";
@@ -37,6 +38,7 @@ const App = () => {
           <SendMail></SendMail>
         </div>
       </div>
+      <AuthForm></AuthForm>
     </>
   )
 }
