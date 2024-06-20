@@ -1,5 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenCompose } from "../store/reduxStore";
 
 const SendMail = () => {
 
@@ -13,6 +14,8 @@ const SendMail = () => {
 
     const openCompose = useSelector((store) => store.appy.openCompose);
 
+    const dispatch = useDispatch();
+
     return (
         <div className={`${openCompose ? "block" : "hidden"} bg-white ma-w-dxl shadow-xl shadow-slate-600 rounded-t-md`}>
             {/* Starting of Compose BODY Section (First-Row) */}
@@ -22,7 +25,11 @@ const SendMail = () => {
                 {/* Ending of Compose BODY Right Section (First-Row) */}
 
                 {/* Starting of Compose BODY Left Section (First-Row) */}
-                <div className="p-2 rounded-full hover:bg-gray-200 cursor-pointer">
+                <div className="p-2 rounded-full hover:bg-gray-200 cursor-pointer"
+                    onClick={() => {
+                        dispatch(setOpenCompose(false));
+                    }}
+                >
                     <RxCross2 size={"10px"} />
                 </div>
                 {/* Ending of Compose BODY Left Section (First-Row) */}
