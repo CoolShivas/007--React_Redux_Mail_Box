@@ -1,3 +1,4 @@
+import SendMail from "./components/pages/SendMail";
 import React from 'react';
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
@@ -32,6 +33,9 @@ const App = () => {
       <div className="bg-[#F6F8FC] h-screen w-screen overflow-hidden">
         <Navbar></Navbar>
         <RouterProvider router={router}></RouterProvider>
+        <div className="absolute w-[30%] right-20 z-10 bottom-0">
+          <SendMail></SendMail>
+        </div>
       </div>
     </>
   )
