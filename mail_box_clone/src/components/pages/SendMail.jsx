@@ -19,7 +19,22 @@ const SendMail = () => {
 
     const dispatch = useDispatch();
 
+    const [to, setTo] = useState("");
+    const [subject, setSubject] = useState("");
     const [contentBox, setContentBox] = useState("");
+
+    const handlerOnSubmitComposeMail = (e) => {
+        e.preventDefault();
+
+        console.log(to);
+        console.log(subject);
+        console.log(contentBox);
+        dispatch(setOpenCompose(false));
+        setTo("");
+        setSubject("");
+        setContentBox("");
+    };
+
 
     return (
         <div className={`${openCompose ? "block" : "hidden"} bg-white ma-w-dxl shadow-xl shadow-slate-600 rounded-t-md`}>
@@ -43,18 +58,22 @@ const SendMail = () => {
 
 
             {/* Starting of Compose BODY Section (Second-Row) */}
-            <form action="" className="flex flex-col p-3 gap-2">
+            <form className="flex flex-col p-3 gap-2" onSubmit={handlerOnSubmitComposeMail}>
 
                 <input
                     type="text"
                     placeholder="To"
                     className="outline-none py-1"
+                    value={to}
+                    onChange={(e) => { setTo(e.target.value) }}
                 />
 
                 <input
                     type="text"
                     placeholder="Subject"
                     className="outline-none py-1"
+                    value={subject}
+                    onChange={(e) => { setSubject(e.target.value) }}
                 />
 
                 {/* <textarea
