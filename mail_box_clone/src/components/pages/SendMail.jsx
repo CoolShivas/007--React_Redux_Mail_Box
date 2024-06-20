@@ -1,6 +1,9 @@
+import "react-quill/dist/quill.snow.css"
+import ReactQuill from "react-quill";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenCompose } from "../store/reduxStore";
+import { useState } from "react";
 
 const SendMail = () => {
 
@@ -15,6 +18,8 @@ const SendMail = () => {
     const openCompose = useSelector((store) => store.appy.openCompose);
 
     const dispatch = useDispatch();
+
+    const [contentBox, setContentBox] = useState("");
 
     return (
         <div className={`${openCompose ? "block" : "hidden"} bg-white ma-w-dxl shadow-xl shadow-slate-600 rounded-t-md`}>
@@ -39,9 +44,32 @@ const SendMail = () => {
 
             {/* Starting of Compose BODY Section (Second-Row) */}
             <form action="" className="flex flex-col p-3 gap-2">
-                <input type="text" placeholder="To" className="outline-none py-1" />
-                <input type="text" placeholder="Subject" className="outline-none py-1" />
-                <textarea name="message" cols={30} rows={10} className="outline-none py-1"></textarea>
+
+                <input
+                    type="text"
+                    placeholder="To"
+                    className="outline-none py-1"
+                />
+
+                <input
+                    type="text"
+                    placeholder="Subject"
+                    className="outline-none py-1"
+                />
+
+                {/* <textarea
+                    name="message"
+                    cols={30}
+                    rows={10}
+                    className="outline-none py-1"
+                ></textarea> */}
+
+                <ReactQuill
+                    theme="snow"
+                    value={contentBox}
+                    onChange={setContentBox}
+                ></ReactQuill>
+
                 <button type="submit" className="bg-[#0B57D0] rounded-full w-fit px-4 text-white font-medium">
                     Send
                 </button>
