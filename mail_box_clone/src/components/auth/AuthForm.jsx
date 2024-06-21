@@ -14,12 +14,89 @@ const AuthForm = () => {
     const [pass, setPass] = useState("");
     const [cnfPass, setCnfPass] = useState("");
 
-    const handlerOnAuthSubmit = (e) => {
+    const handlerOnAuthSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(mail);
-        console.log(pass);
-        console.log(cnfPass);
+        // console.log(mail);
+        // console.log(pass);
+        // console.log(cnfPass);
+        // // Getting data on Console Screen;
+
+        // Starting of Log-In---------------------------------------------------------------
+
+        if (isLogIn) {
+            try {
+
+                if (!mail || !pass) {
+                    throw new Error("Please fill all the fields for signup");
+                }
+
+                const response = await fetch(
+                    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCQ_IDebrsxnYopMQFsq5D2QpmQDMFoKYs",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            email: mail,
+                            password: pass,
+                            returnSecureToken: true,
+                        }),
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.error)
+                    throw new Error("LogIn failed : If not have account please signup ");
+                else {
+                    console.log("User have Successfully Logged-In");
+                    setMail("");
+                    setPass("");
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+
+        // Starting of Sign-Up---------------------------------------------------------------
+
+        else {
+            if (pass === cnfPass) {
+                try {
+
+                    if (!mail || !pass || !cnfPass) {
+                        throw new Error("Please fill all the fields for signup");
+                    }
+
+                    const response = await fetch(
+                        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCQ_IDebrsxnYopMQFsq5D2QpmQDMFoKYs",
+                        {
+                            method: "POST",
+                            body: JSON.stringify({
+                                email: mail,
+                                password: pass,
+                                returnSecureToken: true,
+                            }),
+                        }
+                    );
+
+                    const data = await response.json();
+
+                    if (data.error) {
+                        throw new Error("Signup failed: Email already exists");
+                    }
+                    else {
+                        alert("Successfully SignedUp. You can Login now.");
+                        console.log("User have Successfully SignedUp");
+                        setMail("");
+                        setPass("");
+                        setCnfPass("");
+                    }
+                } catch (error) {
+                    console.log(error.message);
+                }
+            }
+        }
     };
 
 
