@@ -31,13 +31,13 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-      <div className="bg-[#F6F8FC] h-screen w-screen overflow-hidden">
+      {/* <div className="bg-[#F6F8FC] h-screen w-screen overflow-hidden">
         <Navbar></Navbar>
         <RouterProvider router={router}></RouterProvider>
         <div className="absolute w-[30%] right-20 z-10 bottom-0">
           <SendMail></SendMail>
         </div>
-      </div>
+      </div> */}
       <AuthForm></AuthForm>
     </>
   )

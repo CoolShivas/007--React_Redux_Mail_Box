@@ -10,23 +10,40 @@ const AuthForm = () => {
         setIsLogIn((prevState) => !prevState);
     };
 
+    const [mail, setMail] = useState("");
+    const [pass, setPass] = useState("");
+    const [cnfPass, setCnfPass] = useState("");
+
+    const handlerOnAuthSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(mail);
+        console.log(pass);
+        console.log(cnfPass);
+    };
+
+
     return (
-        <Container>
+        <Container className="bg-orange-300 rounded-full">
             <Row className="justify-content-center mt-5">
                 <Col md={6}>
                     <Card>
-                        <Card.Body>
+                        <Card.Body className="bg-blue-50">
                             <h2 className="text-center mb-4">
                                 {isLogIn ? "Log In " : "Sign Up"}
                             </h2>
 
-                            <Form>
+                            <Form onSubmit={handlerOnAuthSubmit}>
 
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label> Email address </Form.Label>
                                     <Form.Control
                                         type="email"
                                         placeholder="Enter email"
+                                        value={mail}
+                                        onChange={(e) => setMail(e.target.value)}
+                                        minLength={6}
+                                        required
                                     />
                                 </Form.Group>
 
@@ -35,6 +52,10 @@ const AuthForm = () => {
                                     <Form.Control
                                         type="password"
                                         placeholder="Password"
+                                        value={pass}
+                                        onChange={(e) => setPass(e.target.value)}
+                                        minLength={6}
+                                        required
                                     />
                                 </Form.Group>
 
@@ -46,6 +67,10 @@ const AuthForm = () => {
                                     <Form.Control
                                         type="password"
                                         placeholder="Confirm Password"
+                                        value={cnfPass}
+                                        onChange={(e) => setCnfPass(e.target.value)}
+                                        minLength={6}
+                                        required
                                     />
                                 </Form.Group>}
 
