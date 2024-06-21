@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
 
 const AuthForm = () => {
+
+    const [isLogIn, setIsLogIn] = useState(false);
+
+    const switchModeToggler = () => {
+        setIsLogIn((prevState) => !prevState);
+    };
 
     return (
         <Container>
@@ -10,8 +17,9 @@ const AuthForm = () => {
                     <Card>
                         <Card.Body>
                             <h2 className="text-center mb-4">
-                                Log In / Sign Up
+                                {isLogIn ? "Log In " : "Sign Up"}
                             </h2>
+
                             <Form>
 
                                 <Form.Group controlId="formBasicEmail">
@@ -30,7 +38,7 @@ const AuthForm = () => {
                                     />
                                 </Form.Group>
 
-                                <Form.Group
+                                {!isLogIn && <Form.Group
                                     controlId="formBasicConfirmfPassword"
                                     className="mt-3"
                                 >
@@ -39,30 +47,35 @@ const AuthForm = () => {
                                         type="password"
                                         placeholder="Confirm Password"
                                     />
-                                </Form.Group>
+                                </Form.Group>}
 
 
                                 <Col className="text-center">
                                     <Button className={`mt-4`} variant="primary" type="submit" size="lg">
-                                        Log In / Sign Up
+                                        {isLogIn ? "Log In" : "Sign Up"}
                                     </Button>
                                 </Col>
                             </Form>
                             <p
-                                className="text-left mt-3"
+                                className="text-center mt-3"
+                                onClick={switchModeToggler}
                             >
-                                <span>
+                                {isLogIn ? (<span>
                                     Don't have an account?
                                     <button className="su_toogle"> Sign-Up Here! </button>
-                                </span>
-                                <span>
-                                    Already have an account?
-                                    <button className="su_toogle"> Log-In Here! </button>
-                                </span>
+                                </span>)
+                                    :
+                                    (<span>
+                                        Already have an account?
+                                        <button className="su_toogle"> Log-In Here! </button>
+                                    </span>)}
+
                             </p>
-                            <button className="text-left su_toogle">
-                                Forgot Password?
+
+                            <button className="su_toogle">
+                                Forgot Password
                             </button>
+
                         </Card.Body>
                     </Card>
                 </Col>
