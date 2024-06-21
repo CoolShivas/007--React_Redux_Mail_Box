@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { setIsUserLogIn } from "../store/reduxStore";
 
 
 const AuthForm = () => {
@@ -16,6 +18,8 @@ const AuthForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [passError, setPassError] = useState("");
     const [error, setError] = useState("");
+
+    const dispatch = useDispatch();
 
     const handlerOnAuthSubmit = async (e) => {
         e.preventDefault();
@@ -54,6 +58,7 @@ const AuthForm = () => {
                     throw new Error("LogIn failed : If not have account please signup ");
                 else {
                     console.log("User have Successfully Logged-In");
+                    dispatch(setIsUserLogIn(true));
                     setMail("");
                     setPass("");
                     setIsLoading(false);
@@ -173,8 +178,8 @@ const AuthForm = () => {
                                 {error && <p className="text-danger"> {error} </p>}
 
                                 {isLoading ? (<center>
-                                    <div class="spinner-border m-3" role="status">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <div className="spinner-border m-3" role="status">
+                                        <span className="visually-hidden">Loading...</span>
                                     </div>
                                 </center>)
                                     : (<Col className="text-center">

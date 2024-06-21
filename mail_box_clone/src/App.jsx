@@ -7,6 +7,7 @@ import Mail from './components/main/Mail';
 import Body from "./components/main/Body";
 import Inbox from './components/main/Inbox';
 import Navbar from './components/header/Navbar';
+import { useSelector } from "react-redux";
 
 
 
@@ -29,16 +30,19 @@ const router = createBrowserRouter([
 
 
 const App = () => {
+
+  const isUserLogIn = useSelector((store) => store.authen.isUserLogIn);
+
   return (
     <>
-      {/* <div className="bg-[#F6F8FC] h-screen w-screen overflow-hidden">
+      {!isUserLogIn ? (<AuthForm></AuthForm>) : (<div className="bg-[#F6F8FC] h-screen w-screen overflow-hidden">
         <Navbar></Navbar>
         <RouterProvider router={router}></RouterProvider>
         <div className="absolute w-[30%] right-20 z-10 bottom-0">
           <SendMail></SendMail>
         </div>
-      </div> */}
-      <AuthForm></AuthForm>
+      </div>)}
+
     </>
   )
 }
