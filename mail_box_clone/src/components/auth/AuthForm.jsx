@@ -13,6 +13,7 @@ const AuthForm = () => {
     const [mail, setMail] = useState("");
     const [pass, setPass] = useState("");
     const [cnfPass, setCnfPass] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlerOnAuthSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +22,8 @@ const AuthForm = () => {
         // console.log(pass);
         // console.log(cnfPass);
         // // Getting data on Console Screen;
+
+        setIsLoading(true);
 
         // Starting of Log-In---------------------------------------------------------------
 
@@ -51,6 +54,7 @@ const AuthForm = () => {
                     console.log("User have Successfully Logged-In");
                     setMail("");
                     setPass("");
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.log(error.message);
@@ -91,6 +95,7 @@ const AuthForm = () => {
                         setMail("");
                         setPass("");
                         setCnfPass("");
+                        setIsLoading(false);
                     }
                 } catch (error) {
                     console.log(error.message);
@@ -151,12 +156,16 @@ const AuthForm = () => {
                                     />
                                 </Form.Group>}
 
-
-                                <Col className="text-center">
-                                    <Button className={`mt-4`} variant="primary" type="submit" size="lg">
-                                        {isLogIn ? "Log In" : "Sign Up"}
-                                    </Button>
-                                </Col>
+                                {isLoading ? (<center>
+                                    <div class="spinner-border m-3" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </center>)
+                                    : (<Col className="text-center">
+                                        <Button className={`mt-4`} variant="primary" type="submit" size="lg">
+                                            {isLogIn ? "Log In" : "Sign Up"}
+                                        </Button>
+                                    </Col>)}
                             </Form>
                             <p
                                 className="text-center mt-3"
