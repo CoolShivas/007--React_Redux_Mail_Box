@@ -14,6 +14,8 @@ const AuthForm = () => {
     const [pass, setPass] = useState("");
     const [cnfPass, setCnfPass] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [passError, setPassError] = useState("");
+    const [error, setError] = useState("");
 
     const handlerOnAuthSubmit = async (e) => {
         e.preventDefault();
@@ -55,10 +57,14 @@ const AuthForm = () => {
                     setMail("");
                     setPass("");
                     setIsLoading(false);
+                    setError("");
                 }
+
             } catch (error) {
                 console.log(error.message);
+                setError(error.message);
             }
+
         }
 
 
@@ -96,11 +102,17 @@ const AuthForm = () => {
                         setPass("");
                         setCnfPass("");
                         setIsLoading(false);
+                        setError("");
                     }
                 } catch (error) {
                     console.log(error.message);
+                    setError(error.message);
                 }
             }
+            else {
+                setPassError("Passwords do not match");
+            }
+
         }
     };
 
@@ -156,6 +168,10 @@ const AuthForm = () => {
                                     />
                                 </Form.Group>}
 
+                                {passError && <p className="text-danger"> {passError} </p>}
+
+                                {error && <p className="text-danger"> {error} </p>}
+
                                 {isLoading ? (<center>
                                     <div class="spinner-border m-3" role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -166,6 +182,13 @@ const AuthForm = () => {
                                             {isLogIn ? "Log In" : "Sign Up"}
                                         </Button>
                                     </Col>)}
+
+                                {/* <Col className="text-center">
+                                    <Button className={`mt-4`} variant="primary" type="submit" size="lg">
+                                        {isLogIn ? "Log In" : "Sign Up"}
+                                    </Button>
+                                </Col> */}
+
                             </Form>
                             <p
                                 className="text-center mt-3"
@@ -173,19 +196,21 @@ const AuthForm = () => {
                             >
                                 {isLogIn ? (<span>
                                     Don't have an account?
-                                    <button className="su_toogle"> Sign-Up Here! </button>
+                                    <button className="su_toogle hover:bg-blue-100 ml-2"> Sign-Up Here! </button>
                                 </span>)
                                     :
                                     (<span>
                                         Already have an account?
-                                        <button className="su_toogle"> Log-In Here! </button>
+                                        <button className="su_toogle hover:bg-blue-100 ml-2"> Log-In Here! </button>
                                     </span>)}
 
                             </p>
 
-                            <button className="su_toogle">
-                                Forgot Password
-                            </button>
+                            <p className="text-center mt-3 hover:bg-blue-200">
+                                <button className="su_toogle">
+                                    Forgot Password
+                                </button>
+                            </p>
 
                         </Card.Body>
                     </Card>
