@@ -4,8 +4,20 @@ import { CiSettings } from "react-icons/ci";
 import { CiCircleQuestion } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsUserLogIn } from '../store/reduxStore';
 
 const Navbar = () => {
+
+    const [toggle, setToggle] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const handlerOnLogOut = () => {
+        dispatch(setIsUserLogIn(false))
+    };
+
     return (
         <div className="flex items-center justify-between mx-3 h-16">
             {/* Starting of Logo and Heading with Humburger */}
@@ -45,7 +57,21 @@ const Navbar = () => {
                     </div>
                     {/* Starting of Avatar for image icon on header's navbar */}
                     <div className="cursor-pointer">
-                        <Avatar src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" size={"40px"} round={true}></Avatar>
+
+                        <Avatar src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            size={"40px"}
+                            round={true}
+                            // onClick={() => setToggle((prevState) => !prevState)}
+                            // The above event listener can we written as mention below ;
+                            onClick={() => setToggle(!toggle)}
+                        ></Avatar>
+
+                        {toggle && (<button
+                            className="btn btn-danger"
+                            onClick={handlerOnLogOut}>
+                            Logout
+                        </button>)}
+
                     </div>
                     {/* Ending of Avatar for image icon on header's navbar */}
                 </div>
