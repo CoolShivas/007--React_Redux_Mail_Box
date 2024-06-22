@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AuthForm from "./components/auth/AuthForm";
 import SendMail from "./components/pages/SendMail";
 import React from 'react';
@@ -7,7 +8,8 @@ import Mail from './components/main/Mail';
 import Body from "./components/main/Body";
 import Inbox from './components/main/Inbox';
 import Navbar from './components/header/Navbar';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsUserLogIn, setLogin } from "./components/store/reduxStore";
 
 
 
@@ -32,6 +34,22 @@ const router = createBrowserRouter([
 const App = () => {
 
   const isUserLogIn = useSelector((store) => store.authen.isUserLogIn);
+
+  const dispatch = useDispatch();
+
+  // const userEmail = JSON.parse(localStorage.getItem("Save-Email"));
+  // console.log(userEmail);
+
+  let localToken = localStorage.getItem("Save-Token");
+
+  useEffect(() => {
+
+    if (localToken) {
+      dispatch(setIsUserLogIn(true));
+      dispatch(setLogin(localToken));
+    }
+
+  }, [localToken]);
 
   return (
     <>
