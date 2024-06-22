@@ -20,6 +20,8 @@ const reduxSlice = createSlice({
 // // Starting of Authentication Slice-----------------------------------------------------
 const INITIAL_AUTH = {
   isUserLogIn: false,
+  userToken: "",
+  userId: null,
 };
 
 const authSlice = createSlice({
@@ -28,6 +30,14 @@ const authSlice = createSlice({
   reducers: {
     setIsUserLogIn: (state, action) => {
       state.isUserLogIn = action.payload;
+    },
+    setLogin: (state, action) => {
+      state.userToken = action.payload.userToken;
+      state.userId = action.payload.userId;
+    },
+    setLogout: (state, action) => {
+      state.userToken = action.payload.userToken;
+      state.userId = action.payload.userId;
     },
   },
 });
@@ -50,7 +60,7 @@ export const { setOpenCompose } = reduxSlice.actions;
 ////******************************************************************************* */
 
 // // Starting of Authentication Actions-----------------------------------------------------
-export const { setIsUserLogIn } = authSlice.actions;
+export const { setIsUserLogIn, setLogin, setLogout } = authSlice.actions;
 // // Ending of Authentication Actions-----------------------------------------------------
 ////******************************************************************************* */
 

@@ -6,7 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setIsUserLogIn } from '../store/reduxStore';
+import { setIsUserLogIn, setLogout } from '../store/reduxStore';
 
 const Navbar = () => {
 
@@ -15,7 +15,14 @@ const Navbar = () => {
     const dispatch = useDispatch();
 
     const handlerOnLogOut = () => {
-        dispatch(setIsUserLogIn(false))
+        dispatch(setIsUserLogIn(false));
+        dispatch(setLogout({
+            userToken: "",
+            userEmail: null,
+        }));
+        localStorage.removeItem("Save-Token");
+        localStorage.removeItem("Save-Email");
+        console.log("User have Successfully Logged-Out");
     };
 
     return (

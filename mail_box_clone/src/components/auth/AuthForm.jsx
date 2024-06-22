@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { setIsUserLogIn } from "../store/reduxStore";
+import { setIsUserLogIn, setLogin } from "../store/reduxStore";
 
 
 const AuthForm = () => {
@@ -57,8 +57,18 @@ const AuthForm = () => {
                 if (data.error)
                     throw new Error("LogIn failed : If not have account please signup ");
                 else {
+                    const cleanEmail = data.email.replace(/[@.]/g, "");
+                    localStorage.setItem("Save-Email", cleanEmail);
+                    localStorage.setItem("Save-Token", data.idToken);
+                    console.log("userEmail", cleanEmail);
                     console.log("User have Successfully Logged-In");
+
                     dispatch(setIsUserLogIn(true));
+                    dispatch(setLogin({
+                        userToken: data.idToken,
+                        userEmail: data.email,
+                    }));
+
                     setMail("");
                     setPass("");
                     setIsLoading(false);
