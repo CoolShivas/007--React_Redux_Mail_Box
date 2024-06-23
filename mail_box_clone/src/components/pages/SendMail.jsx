@@ -2,7 +2,7 @@ import "react-quill/dist/quill.snow.css"
 import ReactQuill from "react-quill";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenCompose } from "../store/reduxStore";
+import { setOpenCompose, setSendMails } from "../store/reduxStore";
 import { useState } from "react";
 
 const SendMail = () => {
@@ -23,12 +23,83 @@ const SendMail = () => {
     const [subject, setSubject] = useState("");
     const [contentBox, setContentBox] = useState("");
 
-    const handlerOnSubmitComposeMail = (e) => {
+    const handlerOnSubmitComposeMail = async (e) => {
         e.preventDefault();
 
-        console.log(to);
-        console.log(subject);
-        console.log(contentBox);
+        const sendEmailDetails = {
+            to: to,
+            subject: subject,
+            contentBox: contentBox,
+        };
+
+        console.log(sendEmailDetails);
+
+        const senderEmail = localStorage.getItem("Save-Email");
+        console.log(senderEmail);
+        // // Getting the sender email that is who is composing this email now;
+        const receiverCleanEmail = JSON.stringify(to.replace(/[@.]/g, ""));
+        console.log(receiverCleanEmail);
+        // // Getting the receiver's email without @ and full-stop that is whom we are sending the mail now;
+
+        // // Receipent Side :-*****************
+        try {
+
+            const response = await fetch(`https://smail-c21e6-default-rtdb.firebaseio.com/indore/${senderEmail}/sendBox.json`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ sendEmailDetails })
+            });
+
+            if (!response.ok) {
+                throw new Error("Mail not sent to server");
+            }
+
+            console.log("Email send successfully", response);
+
+            const data = await response.json();
+
+            dispatch(setSendMails({
+                sendMails: data,
+                receiversId: to,
+            }));
+
+        } catch (error) {
+            console.log("Something went wrong to send the mail", error);
+            alert("Something went wrong to receiver's mail", error);
+        }
+
+        // // Receiver Side :-*******************
+        try {
+
+            const response = await fetch(`https://smail-c21e6-default-rtdb.firebaseio.com/indore/${receiverCleanEmail}/inbox.json`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ sendEmailDetails })
+            });
+
+            if (!response.ok) {
+                throw new Error("Mail not receive from server");
+            }
+
+            console.log("Email send successfully", response);
+
+            const data = await response.json();
+
+            dispatch(setSendMails({
+                sendMails: data,
+                receiversId: to,
+            }));
+
+
+        } catch (error) {
+            console.log("Something went wrong to receiver's mail", error);
+            alert("Something went wrong to receiver's mail", error);
+
+        }
         dispatch(setOpenCompose(false));
         setTo("");
         setSubject("");

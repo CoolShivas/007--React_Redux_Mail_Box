@@ -3,6 +3,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 // // Starting of Compose Box Slice-----------------------------------------------------
 const INITIAL_VALUE = {
   openCompose: false,
+  sendMails: [],
+  receiversId: null,
 };
 
 const reduxSlice = createSlice({
@@ -11,6 +13,13 @@ const reduxSlice = createSlice({
   reducers: {
     setOpenCompose: (state, action) => {
       state.openCompose = action.payload;
+    },
+    setSendMails: (state, action) => {
+      state.sendMails = action.payload.sendMails;
+      state.receiversId = action.payload.receiversId;
+    },
+    setSetUpMails: (state, action) => {
+      state.sendMails = action.payload;
     },
   },
 });
@@ -55,7 +64,8 @@ const reduxStore = configureStore({
 ////******************************************************************************* */
 
 // // Starting of Compose Box Actions-----------------------------------------------------
-export const { setOpenCompose } = reduxSlice.actions;
+export const { setOpenCompose, setSendMails, setSetUpMails } =
+  reduxSlice.actions;
 // // Ending of Compose Box Actions-----------------------------------------------------
 ////******************************************************************************* */
 
